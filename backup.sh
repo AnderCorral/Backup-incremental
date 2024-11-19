@@ -11,4 +11,8 @@ destinoayer="$destino_base/$fechayer/"
 # Crear el directorio de destino si no existe
 mkdir -p "$destino"
 
-rsync -av --link-dest="$destinoayer" "$origen" "$destino"
+if [-d "$destinoayer"]; then
+	rsync -av --link-dest="$destinoayer" "$origen" "$destino"
+else
+	rsync -av "$origen" "$destino"
+fi
